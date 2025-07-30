@@ -264,7 +264,7 @@ function replacePlaceholders(template, formData) {
     
     // Replace common placeholders
     const currentDate = new Date();
-    const currentPlace = 'Mumbai, Maharashtra, India';
+    const currentPlace = formData.noticePlace || 'Mumbai, Maharashtra, India'; // Use custom place or default
     
     result = result.replace(/{{currentDate}}/g, currentDate.toLocaleDateString('en-IN'));
     result = result.replace(/{{currentPlace}}/g, currentPlace);

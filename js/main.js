@@ -17,7 +17,8 @@ const documentTypes = {
             { name: 'branchName', label: 'Branch Name', type: 'text', required: true },
             { name: 'chequeDate', label: 'Cheque Date', type: 'date', required: true },
             { name: 'bounceDate', label: 'Bounce Date', type: 'date', required: true },
-            { name: 'bounceReason', label: 'Bounce Reason', type: 'text', required: true }
+            { name: 'bounceReason', label: 'Bounce Reason', type: 'text', required: true },
+            { name: 'noticePlace', label: 'Place of Notice', type: 'text', required: true, placeholder: 'e.g., Mumbai, Maharashtra' }
         ]
     },
     'rent-default': {
@@ -34,7 +35,8 @@ const documentTypes = {
             { name: 'defaultAmount', label: 'Default Amount', type: 'text', required: true },
             { name: 'defaultPeriod', label: 'Default Period', type: 'text', required: true },
             { name: 'noticeDate', label: 'Notice Date', type: 'date', required: true },
-            { name: 'complianceDate', label: 'Compliance Date', type: 'date', required: true }
+            { name: 'complianceDate', label: 'Compliance Date', type: 'date', required: true },
+            { name: 'noticePlace', label: 'Place of Notice', type: 'text', required: true, placeholder: 'e.g., Mumbai, Maharashtra' }
         ]
     },
     'power-of-attorney': {
@@ -53,7 +55,8 @@ const documentTypes = {
             { name: 'witness1Name', label: 'Witness 1 Name', type: 'text', required: true },
             { name: 'witness1Address', label: 'Witness 1 Address', type: 'textarea', required: true },
             { name: 'witness2Name', label: 'Witness 2 Name', type: 'text', required: true },
-            { name: 'witness2Address', label: 'Witness 2 Address', type: 'textarea', required: true }
+            { name: 'witness2Address', label: 'Witness 2 Address', type: 'textarea', required: true },
+            { name: 'noticePlace', label: 'Place of Document', type: 'text', required: true, placeholder: 'e.g., Mumbai, Maharashtra' }
         ]
     },
     'legal-notice': {
@@ -69,7 +72,8 @@ const documentTypes = {
             { name: 'matter', label: 'Matter in Dispute', type: 'textarea', required: true },
             { name: 'demand', label: 'Demand/Claim', type: 'textarea', required: true },
             { name: 'complianceDate', label: 'Compliance Date', type: 'date', required: true },
-            { name: 'noticeDate', label: 'Notice Date', type: 'date', required: true }
+            { name: 'noticeDate', label: 'Notice Date', type: 'date', required: true },
+            { name: 'noticePlace', label: 'Place of Notice', type: 'text', required: true, placeholder: 'e.g., Mumbai, Maharashtra' }
         ]
     }
 };

@@ -5,9 +5,19 @@ let currentFormData = {};
 
 // Initialize the generator page
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('Generator page loaded');
+    
+    // Check if libraries are loaded
+    console.log('jsPDF available:', typeof window.jspdf !== 'undefined');
+    console.log('htmlDocx available:', typeof window.htmlDocx !== 'undefined');
+    console.log('saveAs available:', typeof window.saveAs !== 'undefined');
+    
     // Get document type from sessionStorage
     const documentType = sessionStorage.getItem('selectedDocumentType');
     const documentTypeData = JSON.parse(sessionStorage.getItem('documentTypeData') || '{}');
+    
+    console.log('Document type:', documentType);
+    console.log('Document data:', documentTypeData);
     
     if (!documentType || !documentTypeData) {
         // Redirect to homepage if no document type selected
@@ -59,6 +69,11 @@ function generateForm(fields) {
         input.id = field.name;
         input.required = field.required;
         
+        // Add placeholder if specified
+        if (field.placeholder) {
+            input.placeholder = field.placeholder;
+        }
+        
         formGroup.appendChild(label);
         formGroup.appendChild(input);
         form.appendChild(formGroup);
@@ -92,6 +107,8 @@ function updateFormData() {
     inputs.forEach(input => {
         currentFormData[input.name] = input.value;
     });
+    
+    console.log('Form data updated:', currentFormData);
 }
 
 // Update document preview
@@ -127,94 +144,162 @@ function togglePreview() {
 
 // Download functions
 function downloadPDF() {
+    console.log('Download PDF clicked');
+    console.log('Current form data:', currentFormData);
+    
     if (!currentFormData || Object.keys(currentFormData).length === 0) {
         alert('Please fill in the form before downloading.');
         return;
     }
     
-    const content = generateDocumentContent(currentDocumentType, currentFormData);
-    const title = getDocumentTitle(currentDocumentType);
+    // Check if jsPDF is available
+    if (typeof window.jspdf === 'undefined') {
+        console.error('jsPDF library not loaded');
+        alert('PDF library not loaded. Please check your internet connection and try again.');
+        return;
+    }
     
-    // Create a temporary div to hold the content
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = content;
-    tempDiv.style.cssText = `
-        font-family: 'Times New Roman', serif;
-        font-size: 12px;
-        line-height: 1.6;
-        padding: 20px;
-        color: #000;
-    `;
-    
-    // Use jsPDF to generate PDF
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-    
-    // Convert HTML to PDF
-    doc.html(tempDiv, {
-        callback: function(doc) {
-            doc.save(`${title.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`);
-        },
-        x: 10,
-        y: 10,
-        width: 190
-    });
+    try {
+        const content = generateDocumentContent(currentDocumentType, currentFormData);
+        const title = getDocumentTitle(currentDocumentType);
+        
+        console.log('Generated content:', content);
+        console.log('Document title:', title);
+        
+        // Use jsPDF to generate PDF with text content only (no HTML conversion)
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF('p', 'mm', 'a4');
+        
+        // Convert HTML to plain text
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = content;
+        const plainText = tempDiv.textContent || tempDiv.innerText || '';
+        
+        // Split text into lines that fit the page width
+        const lines = doc.splitTextToSize(plainText, 180);
+        
+        // Add title at the top
+        doc.setFontSize(16);
+        doc.setFont('helvetica', 'bold');
+        doc.text(title, 105, 20, { align: 'center' });
+        
+        // Add a line separator
+        doc.setDrawColor(0);
+        doc.setLineWidth(0.5);
+        doc.line(15, 30, 195, 30);
+        
+        // Add content with proper formatting
+        doc.setFontSize(12);
+        doc.setFont('helvetica', 'normal');
+        
+        let yPosition = 40;
+        const lineHeight = 7;
+        const maxY = 280; // Leave space for footer
+        
+        for (let i = 0; i < lines.length; i++) {
+            // Check if we need a new page
+            if (yPosition > maxY) {
+                doc.addPage();
+                yPosition = 20;
+            }
+            
+            doc.text(lines[i], 15, yPosition);
+            yPosition += lineHeight;
+        }
+        
+        // Add footer with date
+        const currentDate = new Date().toLocaleDateString('en-IN');
+        doc.setFontSize(10);
+        doc.text(`Generated on: ${currentDate}`, 15, 290);
+        
+        const fileName = `${title.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`;
+        doc.save(fileName);
+        console.log('PDF downloaded successfully:', fileName);
+        showNotification('PDF downloaded successfully!', 'success');
+        
+    } catch (error) {
+        console.error('Error generating PDF:', error);
+        alert('Error generating PDF: ' + error.message + '. Please try again or use DOCX/TXT format.');
+    }
 }
 
 function downloadDOCX() {
+    console.log('Download DOCX clicked');
+    
     if (!currentFormData || Object.keys(currentFormData).length === 0) {
         alert('Please fill in the form before downloading.');
         return;
     }
     
-    const content = generateDocumentContent(currentDocumentType, currentFormData);
-    const title = getDocumentTitle(currentDocumentType);
+    if (typeof window.htmlDocx === 'undefined') {
+        alert('DOCX library not loaded. Please check your internet connection and try again.');
+        return;
+    }
     
-    // Create document content for DOCX
-    const docxContent = `
-        <html>
-            <head>
-                <style>
-                    body { font-family: 'Times New Roman', serif; font-size: 12pt; line-height: 1.6; }
-                    h1 { font-size: 16pt; font-weight: bold; text-align: center; }
-                    h2 { font-size: 14pt; font-weight: bold; }
-                    .signature-section { margin-top: 30px; }
-                    .signature-box { display: inline-block; width: 45%; text-align: center; }
-                </style>
-            </head>
-            <body>
-                ${content}
-            </body>
-        </html>
-    `;
-    
-    // Use html-docx-js to generate DOCX
-    const converted = htmlDocx.asBlob(docxContent);
-    const fileName = `${title.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.docx`;
-    
-    // Download the file
-    saveAs(converted, fileName);
+    try {
+        const content = generateDocumentContent(currentDocumentType, currentFormData);
+        const title = getDocumentTitle(currentDocumentType);
+        
+        // Create document content for DOCX
+        const docxContent = `
+            <html>
+                <head>
+                    <style>
+                        body { font-family: 'Times New Roman', serif; font-size: 12pt; line-height: 1.6; }
+                        h1 { font-size: 16pt; font-weight: bold; text-align: center; }
+                        h2 { font-size: 14pt; font-weight: bold; }
+                        .signature-section { margin-top: 30px; }
+                        .signature-box { display: inline-block; width: 45%; text-align: center; }
+                    </style>
+                </head>
+                <body>
+                    ${content}
+                </body>
+            </html>
+        `;
+        
+        // Use html-docx-js to generate DOCX
+        const converted = htmlDocx.asBlob(docxContent);
+        const fileName = `${title.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.docx`;
+        
+        // Download the file
+        saveAs(converted, fileName);
+        console.log('DOCX downloaded successfully');
+        showNotification('DOCX downloaded successfully!', 'success');
+    } catch (error) {
+        console.error('Error generating DOCX:', error);
+        alert('Error generating DOCX. Please try again.');
+    }
 }
 
 function downloadTXT() {
+    console.log('Download TXT clicked');
+    
     if (!currentFormData || Object.keys(currentFormData).length === 0) {
         alert('Please fill in the form before downloading.');
         return;
     }
     
-    const content = generateDocumentContent(currentDocumentType, currentFormData);
-    const title = getDocumentTitle(currentDocumentType);
-    
-    // Convert HTML to plain text
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = content;
-    const plainText = tempDiv.textContent || tempDiv.innerText || '';
-    
-    // Create and download text file
-    const blob = new Blob([plainText], { type: 'text/plain;charset=utf-8' });
-    const fileName = `${title.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.txt`;
-    
-    saveAs(blob, fileName);
+    try {
+        const content = generateDocumentContent(currentDocumentType, currentFormData);
+        const title = getDocumentTitle(currentDocumentType);
+        
+        // Convert HTML to plain text
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = content;
+        const plainText = tempDiv.textContent || tempDiv.innerText || '';
+        
+        // Create and download text file
+        const blob = new Blob([plainText], { type: 'text/plain;charset=utf-8' });
+        const fileName = `${title.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.txt`;
+        
+        saveAs(blob, fileName);
+        console.log('TXT downloaded successfully');
+        showNotification('TXT downloaded successfully!', 'success');
+    } catch (error) {
+        console.error('Error generating TXT:', error);
+        alert('Error generating TXT. Please try again.');
+    }
 }
 
 // Utility function to show notifications
