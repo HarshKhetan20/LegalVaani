@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Generator - LegalVaani</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="home.html">
+                    <i class="fas fa-balance-scale"></i>
+                    <h1>LegalVaani</h1>
+                </a>
+            </div>
+            <div class="breadcrumb">
+                <span id="document-type">Document Generator</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="generator-layout">
+                <!-- Form Section -->
+                <section class="form-section">
+                    <div class="form-header">
+                        <h2>Document Details</h2>
+                        <p>Fill in the required information to generate your legal document.</p>
+                    </div>
+                    
+                    <form id="document-form" class="document-form">
+                        <!-- Dynamic form fields will be loaded here -->
+                    </form>
+                </section>
+
+                <!-- Preview Section -->
+                <section class="preview-section">
+                    <div class="preview-header">
+                        <h2>Document Preview</h2>
+                        <div class="preview-controls">
+                            <button class="btn btn-secondary" onclick="togglePreview()">
+                                <i class="fas fa-eye"></i> Toggle Preview
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="document-preview" class="document-preview">
+                        <div class="preview-placeholder">
+                            <i class="fas fa-file-alt"></i>
+                            <p>Fill in the form to see a live preview of your document</p>
+                        </div>
+                    </div>
+
+                    <div class="download-section">
+                        <h3>Download Document</h3>
+                        <div class="download-buttons">
+                            <button class="btn btn-success" onclick="downloadPDF()">
+                                <i class="fas fa-file-pdf"></i> Download PDF
+                            </button>
+                            <button class="btn btn-info" onclick="downloadDOCX()">
+                                <i class="fas fa-file-word"></i> Download DOCX
+                            </button>
+                            <button class="btn btn-secondary" onclick="downloadTXT()">
+                                <i class="fas fa-file-alt"></i> Download TXT
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 LegalVaani. Professional Legal Document Generator for Advocates.</p>
+        </div>
+    </footer>
+
+    <!-- Third-party Libraries -->
+    <script src="../libs/jspdf.min.js"></script>
+    <script src="../libs/html-docx.js"></script>
+    <script src="../libs/FileSaver.min.js"></script>
+    
+    <!-- Application Scripts -->
+    <script src="../js/templates.js"></script>
+    <script src="../js/generator.js"></script>
+</body>
+</html> 

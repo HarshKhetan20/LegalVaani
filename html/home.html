@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legalवाणी - Legal Document Generator</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-balance-scale"></i>
+                <h1>Legalवाणी</h1>
+            </div>
+            <p class="tagline">Professional Legal Document Generator for Advocates</p>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <section class="hero">
+                <h2>Generate Professional Legal Documents</h2>
+                <p>Create legally sound documents with our easy-to-use generator. Simply fill in the details and download your document in multiple formats.</p>
+            </section>
+
+            <section class="document-types">
+                <h3>Select Document Type</h3>
+                <div class="document-grid">
+                    <div class="document-card" data-type="cheque-bounce">
+                        <div class="card-icon">
+                            <i class="fas fa-money-check-alt"></i>
+                        </div>
+                        <h4>Cheque Bounce Notice</h4>
+                        <p>Generate a legal notice for dishonored cheques under Section 138 of the Negotiable Instruments Act.</p>
+                        <button class="btn btn-primary" onclick="selectDocument('cheque-bounce')">
+                            Generate Document
+                        </button>
+                    </div>
+
+                    <div class="document-card" data-type="rent-default">
+                        <div class="card-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h4>Rent Default Notice</h4>
+                        <p>Create a notice for tenants who have defaulted on rent payments or violated lease terms.</p>
+                        <button class="btn btn-primary" onclick="selectDocument('rent-default')">
+                            Generate Document
+                        </button>
+                    </div>
+
+                    <div class="document-card" data-type="power-of-attorney">
+                        <div class="card-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h4>Power of Attorney</h4>
+                        <p>Draft a comprehensive Power of Attorney document with proper legal clauses and terms.</p>
+                        <button class="btn btn-primary" onclick="selectDocument('power-of-attorney')">
+                            Generate Document
+                        </button>
+                    </div>
+
+                    <div class="document-card" data-type="legal-notice">
+                        <div class="card-icon">
+                            <i class="fas fa-gavel"></i>
+                        </div>
+                        <h4>General Legal Notice</h4>
+                        <p>Create a general legal notice for various legal matters and disputes.</p>
+                        <button class="btn btn-primary" onclick="selectDocument('legal-notice')">
+                            Generate Document
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="features">
+                <h3>Why Choose Legalवाणी?</h3>
+                <div class="features-grid">
+                    <div class="feature">
+                        <i class="fas fa-clock"></i>
+                        <h4>Quick Generation</h4>
+                        <p>Generate professional legal documents in minutes, not hours.</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-file-pdf"></i>
+                        <h4>Multiple Formats</h4>
+                        <p>Download in PDF, DOCX, or TXT formats for your convenience.</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-shield-alt"></i>
+                        <h4>Legally Sound</h4>
+                        <p>All templates are crafted by legal professionals and follow current laws.</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h4>Responsive Design</h4>
+                        <p>Works perfectly on desktop, tablet, and mobile devices.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Legalवाणी. Professional Legal Document Generator for Advocates.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html> 
