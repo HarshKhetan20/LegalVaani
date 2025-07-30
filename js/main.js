@@ -18,6 +18,9 @@ const documentTypes = {
             { name: 'chequeDate', label: 'Cheque Date', type: 'date', required: true },
             { name: 'bounceDate', label: 'Bounce Date', type: 'date', required: true },
             { name: 'bounceReason', label: 'Bounce Reason', type: 'text', required: true },
+            { name: 'actName', label: 'Act Name', type: 'text', required: true, placeholder: 'e.g., Negotiable Instruments Act, 1881' },
+            { name: 'sectionNumber', label: 'Section Number', type: 'text', required: true, placeholder: 'e.g., Section 138' },
+            { name: 'complianceDays', label: 'Compliance Period (Days)', type: 'text', required: true, placeholder: 'e.g., 15' },
             { name: 'noticePlace', label: 'Place of Notice', type: 'text', required: true, placeholder: 'e.g., Mumbai, Maharashtra' }
         ]
     },
@@ -36,6 +39,8 @@ const documentTypes = {
             { name: 'defaultPeriod', label: 'Default Period', type: 'text', required: true },
             { name: 'noticeDate', label: 'Notice Date', type: 'date', required: true },
             { name: 'complianceDate', label: 'Compliance Date', type: 'date', required: true },
+            { name: 'rentAct', label: 'Rent Control Act', type: 'text', required: true, placeholder: 'e.g., Maharashtra Rent Control Act, 1999' },
+            { name: 'legalBasis', label: 'Legal Basis for Eviction', type: 'textarea', required: true, placeholder: 'e.g., Non-payment of rent constitutes breach of tenancy agreement' },
             { name: 'noticePlace', label: 'Place of Notice', type: 'text', required: true, placeholder: 'e.g., Mumbai, Maharashtra' }
         ]
     },
@@ -73,6 +78,8 @@ const documentTypes = {
             { name: 'demand', label: 'Demand/Claim', type: 'textarea', required: true },
             { name: 'complianceDate', label: 'Compliance Date', type: 'date', required: true },
             { name: 'noticeDate', label: 'Notice Date', type: 'date', required: true },
+            { name: 'applicableAct', label: 'Applicable Act/Law', type: 'text', required: true, placeholder: 'e.g., Indian Contract Act, 1872' },
+            { name: 'legalProvisions', label: 'Legal Provisions', type: 'textarea', required: true, placeholder: 'e.g., Section 73 - Compensation for loss or damage' },
             { name: 'noticePlace', label: 'Place of Notice', type: 'text', required: true, placeholder: 'e.g., Mumbai, Maharashtra' }
         ]
     }

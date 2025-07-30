@@ -2,10 +2,10 @@
 
 const documentTemplates = {
     'cheque-bounce': {
-        title: 'LEGAL NOTICE UNDER SECTION 138 OF THE NEGOTIABLE INSTRUMENTS ACT, 1881',
+        title: 'LEGAL NOTICE UNDER {{sectionNumber}} OF THE {{actName}}',
         template: `
             <div class="document-content">
-                <h1>LEGAL NOTICE UNDER SECTION 138 OF THE NEGOTIABLE INSTRUMENTS ACT, 1881</h1>
+                <h1>LEGAL NOTICE UNDER {{sectionNumber}} OF THE {{actName}}</h1>
                 
                 <p><strong>From:</strong><br>
                 {{senderName}}<br>
@@ -15,11 +15,11 @@ const documentTemplates = {
                 {{recipientName}}<br>
                 {{recipientAddress}}</p>
                 
-                <p><strong>Subject:</strong> Legal Notice under Section 138 of the Negotiable Instruments Act, 1881 for dishonor of cheque bearing No. {{chequeNumber}} dated {{chequeDate}} for Rs. {{chequeAmount}}/-</p>
+                <p><strong>Subject:</strong> Legal Notice under {{sectionNumber}} of the {{actName}} for dishonor of cheque bearing No. {{chequeNumber}} dated {{chequeDate}} for Rs. {{chequeAmount}}/-</p>
                 
                 <p>Dear Sir/Madam,</p>
                 
-                <p>I, {{senderName}}, through my advocate, hereby serve upon you this legal notice under Section 138 of the Negotiable Instruments Act, 1881, for the dishonor of the cheque issued by you.</p>
+                <p>I, {{senderName}}, through my advocate, hereby serve upon you this legal notice under {{sectionNumber}} of the {{actName}}, for the dishonor of the cheque issued by you.</p>
                 
                 <h2>FACTS OF THE CASE:</h2>
                 
@@ -33,11 +33,11 @@ const documentTemplates = {
                 
                 <h2>LEGAL POSITION:</h2>
                 
-                <p>Under Section 138 of the Negotiable Instruments Act, 1881, dishonor of a cheque for insufficiency of funds or any other reason is a criminal offense punishable with imprisonment for a term which may extend to two years, or with fine which may extend to twice the amount of the cheque, or with both.</p>
+                <p>Under {{sectionNumber}} of the {{actName}}, dishonor of a cheque for insufficiency of funds or any other reason is a criminal offense punishable with imprisonment for a term which may extend to two years, or with fine which may extend to twice the amount of the cheque, or with both.</p>
                 
                 <h2>DEMAND:</h2>
                 
-                <p>Therefore, I hereby demand from you to pay the amount of Rs. {{chequeAmount}}/- (Rupees {{chequeAmount}} only) within 15 days from the receipt of this notice, failing which I shall be constrained to initiate criminal proceedings against you under Section 138 of the Negotiable Instruments Act, 1881, before the competent court of law.</p>
+                <p>Therefore, I hereby demand from you to pay the amount of Rs. {{chequeAmount}}/- (Rupees {{chequeAmount}} only) within {{complianceDays}} days from the receipt of this notice, failing which I shall be constrained to initiate criminal proceedings against you under {{sectionNumber}} of the {{actName}}, before the competent court of law.</p>
                 
                 <p>Please treat this as a final notice and make the payment within the stipulated time to avoid legal consequences.</p>
                 
@@ -72,7 +72,7 @@ const documentTemplates = {
                 {{tenantName}}<br>
                 {{tenantAddress}}</p>
                 
-                <p><strong>Subject:</strong> Legal Notice for default in payment of rent and termination of tenancy</p>
+                <p><strong>Subject:</strong> Legal Notice for default in payment of rent and termination of tenancy under {{rentAct}}</p>
                 
                 <p>Dear Sir/Madam,</p>
                 
@@ -90,7 +90,7 @@ const documentTemplates = {
                 
                 <h2>LEGAL POSITION:</h2>
                 
-                <p>Under the provisions of the relevant rent control laws and the terms of the tenancy agreement, non-payment of rent constitutes a breach of the tenancy agreement, which entitles the landlord to terminate the tenancy and take possession of the property.</p>
+                <p>{{legalBasis}}</p>
                 
                 <h2>DEMAND:</h2>
                 
@@ -102,7 +102,7 @@ const documentTemplates = {
                 
                 <p>3. To remove all your belongings and restore the property to its original condition.</p>
                 
-                <p>Please note that if you fail to comply with this notice within the stipulated time, I shall be constrained to initiate legal proceedings for eviction and recovery of the outstanding rent amount before the competent court of law.</p>
+                <p>Please note that if you fail to comply with this notice within the stipulated time, I shall be constrained to initiate legal proceedings for eviction and recovery of the outstanding rent amount before the competent court of law under the provisions of {{rentAct}}.</p>
                 
                 <p>This notice is being sent to you on {{noticeDate}}.</p>
                 
@@ -221,13 +221,13 @@ const documentTemplates = {
                 
                 <h2>LEGAL POSITION:</h2>
                 
-                <p>Under the relevant provisions of law, you are legally bound to address the issues raised in this notice and take appropriate action to resolve the matter.</p>
+                <p>Under {{legalProvisions}} of the {{applicableAct}}, you are legally bound to address the issues raised in this notice and take appropriate action to resolve the matter.</p>
                 
                 <h2>DEMAND:</h2>
                 
                 <p>{{demand}}</p>
                 
-                <p>Therefore, I hereby demand from you to comply with the above-mentioned demands within {{complianceDate}}, failing which I shall be constrained to initiate appropriate legal proceedings against you before the competent court of law.</p>
+                <p>Therefore, I hereby demand from you to comply with the above-mentioned demands within {{complianceDate}}, failing which I shall be constrained to initiate appropriate legal proceedings against you before the competent court of law under the provisions of {{applicableAct}}.</p>
                 
                 <p>Please treat this as a final notice and take necessary action within the stipulated time to avoid legal consequences.</p>
                 
