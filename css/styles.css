@@ -496,4 +496,139 @@ body {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+/* Document Editor Styles */
+.document-editor {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    margin: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.editor-header {
+    padding: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+    background: #f8fafc;
+    border-radius: 8px 8px 0 0;
+}
+
+.editor-header h3 {
+    margin: 0 0 0.5rem 0;
+    color: #2d3748;
+    font-size: 1.2rem;
+}
+
+.editor-header p {
+    margin: 0;
+    color: #718096;
+    font-size: 0.9rem;
+}
+
+.editor-toolbar {
+    padding: 0.75rem;
+    border-bottom: 1px solid #e2e8f0;
+    background: #f8fafc;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.btn-sm {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    border-radius: 6px;
+}
+
+.editor-content {
+    padding: 1rem;
+    min-height: 300px;
+}
+
+.rich-editor {
+    min-height: 250px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 1rem;
+    font-family: 'Times New Roman', serif;
+    font-size: 12pt;
+    line-height: 1.6;
+    outline: none;
+    background: white;
+    overflow-y: auto;
+}
+
+.rich-editor:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.rich-editor h1 {
+    font-size: 16pt;
+    font-weight: bold;
+    margin: 1rem 0 0.5rem 0;
+    color: #2d3748;
+}
+
+.rich-editor h2 {
+    font-size: 14pt;
+    font-weight: bold;
+    margin: 0.75rem 0 0.5rem 0;
+    color: #2d3748;
+}
+
+.rich-editor p {
+    margin: 0.5rem 0;
+}
+
+.rich-editor strong {
+    font-weight: bold;
+}
+
+.rich-editor em {
+    font-style: italic;
+}
+
+.rich-editor u {
+    text-decoration: underline;
+}
+
+.rich-editor ul, .rich-editor ol {
+    margin: 0.5rem 0;
+    padding-left: 2rem;
+}
+
+.editor-actions {
+    padding: 1rem;
+    border-top: 1px solid #e2e8f0;
+    background: #f8fafc;
+    border-radius: 0 0 8px 8px;
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+/* Editor state indicators */
+.editor-modified {
+    border-left: 4px solid #ed8936;
+}
+
+.editor-saved {
+    border-left: 4px solid #48bb78;
+}
+
+/* Responsive editor styles */
+@media (max-width: 768px) {
+    .editor-toolbar {
+        justify-content: center;
+    }
+    
+    .editor-actions {
+        flex-direction: column;
+    }
+    
+    .rich-editor {
+        font-size: 11pt;
+    }
 } 

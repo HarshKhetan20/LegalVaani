@@ -41,10 +41,13 @@
                 <!-- Preview Section -->
                 <section class="preview-section">
                     <div class="preview-header">
-                        <h2>Document Preview</h2>
+                        <h2>Document Preview & Editor</h2>
                         <div class="preview-controls">
                             <button class="btn btn-secondary" onclick="togglePreview()">
                                 <i class="fas fa-eye"></i> Toggle Preview
+                            </button>
+                            <button class="btn btn-primary" onclick="toggleEditor()">
+                                <i class="fas fa-edit"></i> Toggle Editor
                             </button>
                         </div>
                     </div>
@@ -53,6 +56,48 @@
                         <div class="preview-placeholder">
                             <i class="fas fa-file-alt"></i>
                             <p>Fill in the form to see a live preview of your document</p>
+                        </div>
+                    </div>
+
+                    <!-- Document Editor -->
+                    <div id="document-editor" class="document-editor hidden">
+                        <div class="editor-header">
+                            <h3>Edit Document Content</h3>
+                            <p>Make any necessary changes to your document before downloading.</p>
+                        </div>
+                        <div class="editor-toolbar">
+                            <button class="btn btn-sm btn-secondary" onclick="formatText('bold')">
+                                <i class="fas fa-bold"></i>
+                            </button>
+                            <button class="btn btn-sm btn-secondary" onclick="formatText('italic')">
+                                <i class="fas fa-italic"></i>
+                            </button>
+                            <button class="btn btn-sm btn-secondary" onclick="formatText('underline')">
+                                <i class="fas fa-underline"></i>
+                            </button>
+                            <button class="btn btn-sm btn-secondary" onclick="insertHeading()">
+                                <i class="fas fa-heading"></i>
+                            </button>
+                            <button class="btn btn-sm btn-secondary" onclick="insertList()">
+                                <i class="fas fa-list"></i>
+                            </button>
+                            <button class="btn btn-sm btn-secondary" onclick="undoEdit()">
+                                <i class="fas fa-undo"></i>
+                            </button>
+                            <button class="btn btn-sm btn-secondary" onclick="redoEdit()">
+                                <i class="fas fa-redo"></i>
+                            </button>
+                        </div>
+                        <div class="editor-content">
+                            <div id="editor" class="rich-editor" contenteditable="true"></div>
+                        </div>
+                        <div class="editor-actions">
+                            <button class="btn btn-success" onclick="saveEdits()">
+                                <i class="fas fa-save"></i> Save Changes
+                            </button>
+                            <button class="btn btn-secondary" onclick="resetEdits()">
+                                <i class="fas fa-undo"></i> Reset to Original
+                            </button>
                         </div>
                     </div>
 
@@ -89,5 +134,6 @@
     <!-- Application Scripts -->
     <script src="../js/templates.js"></script>
     <script src="../js/generator.js"></script>
+    <script src="../js/editor.js"></script>
 </body>
 </html> 

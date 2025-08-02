@@ -128,6 +128,15 @@ function updatePreview() {
     // Generate document content
     const content = generateDocumentContent(currentDocumentType, currentFormData);
     preview.innerHTML = content;
+    
+    // Update editor content if editor is active
+    if (typeof window.getCurrentContent === 'function') {
+        const editor = document.getElementById('editor');
+        if (editor && !window.isEditorActive) {
+            window.originalContent = content;
+            window.editedContent = content;
+        }
+    }
 }
 
 // Toggle preview visibility
@@ -160,7 +169,10 @@ function downloadPDF() {
     }
     
     try {
-        const content = generateDocumentContent(currentDocumentType, currentFormData);
+        // Use edited content if available, otherwise use generated content
+        const content = (typeof window.getCurrentContent === 'function') ? 
+            window.getCurrentContent() : 
+            generateDocumentContent(currentDocumentType, currentFormData);
         const title = getDocumentTitle(currentDocumentType);
         
         console.log('Generated content:', content);
@@ -237,7 +249,10 @@ function downloadDOCX() {
     }
     
     try {
-        const content = generateDocumentContent(currentDocumentType, currentFormData);
+        // Use edited content if available, otherwise use generated content
+        const content = (typeof window.getCurrentContent === 'function') ? 
+            window.getCurrentContent() : 
+            generateDocumentContent(currentDocumentType, currentFormData);
         const title = getDocumentTitle(currentDocumentType);
         
         // Create document content for DOCX
@@ -281,7 +296,10 @@ function downloadTXT() {
     }
     
     try {
-        const content = generateDocumentContent(currentDocumentType, currentFormData);
+        // Use edited content if available, otherwise use generated content
+        const content = (typeof window.getCurrentContent === 'function') ? 
+            window.getCurrentContent() : 
+            generateDocumentContent(currentDocumentType, currentFormData);
         const title = getDocumentTitle(currentDocumentType);
         
         // Convert HTML to plain text
