@@ -2,13 +2,13 @@
 // Using Firebase Compat Library (v9)
 
 const firebaseConfig = {
-  apiKey: FIREBASE_API_KEY,
-  authDomain: FIREBASE_AUTH_DOMAIN,
-  projectId: FIREBASE_PROJECT_ID,
-  storageBucket: FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: FIREBASE_MESSAGING_SENDER_ID,
-  appId: FIREBASE_APP_ID,
-  measurementId: FIREBASE_MEASUREMENT_ID
+  apiKey: "AIzaSyDwgeK32fVl6gWK99IiO5TdxP1aoRnmYKM",
+  authDomain: "legalvaani.firebaseapp.com",
+  projectId: "legalvaani",
+  storageBucket: "legalvaani.firebasestorage.app",
+  messagingSenderId: "864855352558",
+  appId: "1:864855352558:web:362e9cd065a27cbab43fff",
+  measurementId: "G-2MR37TLZJG"
 };
 
 // Initialize Firebase
