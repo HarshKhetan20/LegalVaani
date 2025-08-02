@@ -87,6 +87,11 @@ const documentTypes = {
 
 // Function to select document type and navigate to generator
 function selectDocument(documentType) {
+    // Check if user is authenticated
+    if (typeof requireAuth === 'function' && !requireAuth()) {
+        return;
+    }
+    
     if (documentTypes[documentType]) {
         // Store the selected document type in sessionStorage
         sessionStorage.setItem('selectedDocumentType', documentType);
