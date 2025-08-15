@@ -76,10 +76,8 @@ function toggleEditor() {
         preview.style.display = 'none';
         window.isEditorActive = true;
         
-        // Load content into editor if not already loaded
-        if (!window.originalContent) {
-            loadContentIntoEditor();
-        }
+        // Always reload content into editor when toggling to ensure latest form data is used
+        loadContentIntoEditor();
         
         showNotification('Editor activated. You can now edit your document.', 'info');
     } else {
@@ -87,6 +85,11 @@ function toggleEditor() {
         editor.classList.add('hidden');
         preview.style.display = 'block';
         window.isEditorActive = false;
+        
+        // If content was modified in the editor, update the preview
+        if (window.isModified) {
+            updatePreviewFromEditor();
+        }
         
         showNotification('Editor deactivated. Preview mode restored.', 'info');
     }
@@ -118,6 +121,21 @@ function loadContentIntoEditor() {
     window.isModified = false;
     
     updateEditorState();
+}
+
+// Update preview with edited content from editor
+function updatePreviewFromEditor() {
+    const editor = document.getElementById('editor');
+    const preview = document.getElementById('document-preview');
+    
+    // Get the current content from the editor
+    const editedContent = editor.innerHTML;
+    
+    // Update the preview with the edited content
+    preview.innerHTML = editedContent;
+    
+    // Store the edited content
+    window.editedContent = editedContent;
 }
 
 // Format text in editor
@@ -265,14 +283,24 @@ function updateEditorState() {
         editor.classList.remove('editor-modified');
         editor.classList.add('editor-saved');
     }
+    
+    // Update button states if they exist
+    const saveButton = document.querySelector('.editor-actions .btn-success');
+    const resetButton = document.querySelector('.editor-actions .btn-secondary');
+    
+    if (saveButton && resetButton) {
+        saveButton.disabled = !window.isModified;
+        resetButton.disabled = !window.isModified;
+    }
 }
 
 // Get current editor content (either edited or original)
 function getCurrentContent() {
-    if (window.isEditorActive && window.editedContent) {
-        return window.editedContent;
+    if (window.isEditorActive && document.getElementById('editor')) {
+        // Return content directly from editor if it's active
+        return document.getElementById('editor').innerHTML;
     }
-    return window.originalContent || generateDocumentContent(currentDocumentType, currentFormData);
+    return window.editedContent || window.originalContent || generateDocumentContent(currentDocumentType, currentFormData);
 }
 
 // Export functions for use in other files
@@ -284,4 +312,4 @@ window.undoEdit = undoEdit;
 window.redoEdit = redoEdit;
 window.saveEdits = saveEdits;
 window.resetEdits = resetEdits;
-window.getCurrentContent = getCurrentContent; 
+window.getCurrentContent = getCurrentContent;
