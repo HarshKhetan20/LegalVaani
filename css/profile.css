@@ -1,0 +1,179 @@
+/* Reset and Base Styles - inherit from main styles.css */
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8fafc;
+}
+
+/* Profile specific styles */
+.profile-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 20px;
+}
+
+/* Profile Header */
+.profile-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.profile-avatar {
+    font-size: 6rem;
+    color: #667eea;
+    margin-bottom: 1rem;
+}
+
+.profile-header h1 {
+    color: #2d3748;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.profile-header p {
+    color: #718096;
+    font-size: 1rem;
+}
+
+/* Profile Details */
+.profile-details {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    padding: 2rem;
+}
+
+.profile-section {
+    margin-bottom: 2rem;
+}
+
+.profile-section h2 {
+    color: #2d3748;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.info-group {
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.info-group label {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #2d3748;
+    font-size: 0.9rem;
+}
+
+.info-group input {
+    padding: 0.75rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: border-color 0.3s ease;
+    font-family: inherit;
+}
+
+.info-group input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Buttons */
+.update-btn, .change-password-btn, .logout-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.update-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.update-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.change-password-btn {
+    background: #e2e8f0;
+    color: #4a5568;
+}
+
+.change-password-btn:hover {
+    background: #cbd5e0;
+}
+
+.logout-btn {
+    background: #ef4444;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.logout-btn:hover {
+    background: #dc2626;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(239, 68, 68, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-container {
+        margin: 1rem;
+        padding: 10px;
+    }
+
+    .profile-details, .profile-header {
+        padding: 1.5rem;
+    }
+
+    .update-btn, .change-password-btn, .logout-btn {
+        width: 100%;
+        margin: 0.5rem 0;
+        justify-content: center;
+    }
+}
+
+
+/* Profile Icon */
+.profile-icon {
+    font-size: 1.5rem;
+    margin-left: auto;
+}
+
+.profile-icon a {
+    color: white;
+    text-decoration: none;
+}
+
+.profile-icon a:hover {
+    opacity: 0.9;
+}

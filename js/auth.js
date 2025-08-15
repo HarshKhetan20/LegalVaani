@@ -20,6 +20,28 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// Update auth state handler
+firebase.auth().onAuthStateChanged((user) => {
+    const authButtons = document.querySelector('.auth-buttons');
+    const userInfo = document.querySelector('.user-info');
+    const profileIcon = document.querySelector('.profile-icon');
+
+    if (user) {
+        // User is logged in
+        if (authButtons) authButtons.style.display = 'none';
+        if (userInfo) userInfo.style.display = 'flex';
+        if (profileIcon) {
+            profileIcon.style.display = 'flex';
+            profileIcon.querySelector('a').href = 'profile.html';
+        }
+    } else {
+        // User is logged out
+        if (authButtons) authButtons.style.display = 'flex';
+        if (userInfo) userInfo.style.display = 'none';
+        if (profileIcon) profileIcon.style.display = 'none';
+    }
+});
+
 // Update UI for logged in user
 function updateUIForLoggedInUser(user) {
     const authButtons = document.querySelector('.auth-buttons');
@@ -181,6 +203,36 @@ async function logout() {
     }
 }
 
+// Change password function
+async function changePassword(newPassword) {
+    try {
+        if (!currentUser) {
+            throw new Error('User not authenticated');
+        }
+        
+        showNotification('Changing password...', 'info');
+        
+        await currentUser.updatePassword(newPassword);
+        
+        showNotification('Password changed successfully!', 'success');
+    } catch (error) {
+        console.error('Change password error:', error);
+        let errorMessage = 'An error occurred while changing the password.';
+        
+        switch (error.code) {
+            case 'auth/weak-password':
+                errorMessage = 'Password should be at least 6 characters long.';
+                break;
+            case 'auth/requires-recent-login':
+                errorMessage = 'Please re-login to change your password.';
+                break;
+        }
+        
+        showNotification(errorMessage, 'error');
+        throw error;
+    }
+}
+
 // Handle signup form submission
 function handleSignup(event) {
     event.preventDefault();
@@ -284,4 +336,5 @@ window.handleLogin = handleLogin;
 window.showAuthModal = showAuthModal;
 window.closeAuthModal = closeAuthModal;
 window.isAuthenticated = isAuthenticated;
-window.requireAuth = requireAuth; 
+window.requireAuth = requireAuth;
+window.changePassword = changePassword;

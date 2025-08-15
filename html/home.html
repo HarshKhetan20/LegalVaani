@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body>
     <header class="header">
         <div class="container">
@@ -17,7 +19,7 @@
             </div>
             <div class="header-right">
                 <p class="tagline">Professional Legal Document Generator for Advocates</p>
-                
+
                 <!-- Authentication UI -->
                 <div class="auth-section">
                     <div class="auth-buttons">
@@ -28,19 +30,19 @@
                             <i class="fas fa-user-plus"></i> Sign Up
                         </button>
                     </div>
-                    <div class="user-info" style="display: none;">
-                        <!-- User info will be populated by JavaScript -->
+                    <div class="profile-icon">
+                        <a href="profile.html"><i class="fas fa-user-circle"></i></a>
                     </div>
                 </div>
             </div>
-        </div>
     </header>
 
     <main class="main-content">
         <div class="container">
             <section class="hero">
                 <h2>Generate Professional Legal Documents</h2>
-                <p>Create legally sound documents with our easy-to-use generator. Simply fill in the details and download your document in multiple formats.</p>
+                <p>Create legally sound documents with our easy-to-use generator. Simply fill in the details and
+                    download your document in multiple formats.</p>
             </section>
 
             <section class="document-types">
@@ -51,7 +53,8 @@
                             <i class="fas fa-money-check-alt"></i>
                         </div>
                         <h4>Cheque Bounce Notice</h4>
-                        <p>Generate a legal notice for dishonored cheques under Section 138 of the Negotiable Instruments Act.</p>
+                        <p>Generate a legal notice for dishonored cheques under Section 138 of the Negotiable
+                            Instruments Act.</p>
                         <button class="btn btn-primary" onclick="selectDocument('cheque-bounce')">
                             Generate Document
                         </button>
@@ -135,7 +138,7 @@
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            
+
             <!-- Login Form -->
             <form id="login-form" class="auth-form" onsubmit="handleLogin(event)">
                 <div class="form-group">
@@ -147,16 +150,16 @@
                     <input type="password" id="login-password" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Login</button>
-                
+
                 <div class="auth-divider">
                     <span>or</span>
                 </div>
-                
+
                 <button type="button" class="btn btn-google" onclick="signInWithGoogle()">
                     <i class="fab fa-google"></i> Sign in with Google
                 </button>
             </form>
-            
+
             <!-- Signup Form -->
             <form id="signup-form" class="auth-form" style="display: none;" onsubmit="handleSignup(event)">
                 <div class="form-group">
@@ -172,18 +175,19 @@
                     <input type="password" id="signup-confirm-password" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Create Account</button>
-                
+
                 <div class="auth-divider">
                     <span>or</span>
                 </div>
-                
+
                 <button type="button" class="btn btn-google" onclick="signInWithGoogle()">
                     <i class="fab fa-google"></i> Sign up with Google
                 </button>
             </form>
-            
+
             <div class="auth-switch">
-                <p id="auth-switch-text">Don't have an account? <a href="#" onclick="showAuthModal('signup')">Sign up</a></p>
+                <p id="auth-switch-text">Don't have an account? <a href="#" onclick="showAuthModal('signup')">Sign
+                        up</a></p>
             </div>
         </div>
     </div>
@@ -191,10 +195,11 @@
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
-    
+
     <!-- Application Scripts -->
     <script src="../js/firebase-config.js"></script>
     <script src="../js/auth.js"></script>
     <script src="../js/main.js"></script>
 </body>
-</html> 
+
+</html>
