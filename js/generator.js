@@ -229,6 +229,37 @@ function downloadPDF() {
         console.log('PDF downloaded successfully:', fileName);
         showNotification('PDF downloaded successfully!', 'success');
         
+        // Save document to user profile
+        try {
+            if (firebase.auth().currentUser) {
+                // Check if saveDocumentToProfile exists in window scope
+                if (typeof window.saveDocumentToProfile === 'function') {
+                    window.saveDocumentToProfile({
+                        name: title,
+                        content: content,
+                        type: currentDocumentType
+                    });
+                    console.log('Document saved to profile');
+                } else {
+                    // If function doesn't exist, define it locally
+                    const user = firebase.auth().currentUser;
+                    const userDocs = JSON.parse(localStorage.getItem(`userDocs_${user.uid}`)) || [];
+                    const newDoc = {
+                        id: Date.now().toString(),
+                        name: title,
+                        content: content,
+                        createdAt: new Date().toISOString(),
+                        type: currentDocumentType
+                    };
+                    userDocs.push(newDoc);
+                    localStorage.setItem(`userDocs_${user.uid}`, JSON.stringify(userDocs));
+                    console.log('Document saved to profile using local implementation');
+                }
+            }
+        } catch (error) {
+            console.error('Error saving document to profile:', error);
+        }
+        
     } catch (error) {
         console.error('Error generating PDF:', error);
         alert('Error generating PDF: ' + error.message + '. Please try again or use DOCX/TXT format.');
@@ -281,6 +312,37 @@ function downloadDOCX() {
         saveAs(converted, fileName);
         console.log('DOCX downloaded successfully');
         showNotification('DOCX downloaded successfully!', 'success');
+        
+        // Save document to user profile
+        try {
+            if (firebase.auth().currentUser) {
+                // Check if saveDocumentToProfile exists in window scope
+                if (typeof window.saveDocumentToProfile === 'function') {
+                    window.saveDocumentToProfile({
+                        name: title,
+                        content: content,
+                        type: currentDocumentType
+                    });
+                    console.log('Document saved to profile');
+                } else {
+                    // If function doesn't exist, define it locally
+                    const user = firebase.auth().currentUser;
+                    const userDocs = JSON.parse(localStorage.getItem(`userDocs_${user.uid}`)) || [];
+                    const newDoc = {
+                        id: Date.now().toString(),
+                        name: title,
+                        content: content,
+                        createdAt: new Date().toISOString(),
+                        type: currentDocumentType
+                    };
+                    userDocs.push(newDoc);
+                    localStorage.setItem(`userDocs_${user.uid}`, JSON.stringify(userDocs));
+                    console.log('Document saved to profile using local implementation');
+                }
+            }
+        } catch (error) {
+            console.error('Error saving document to profile:', error);
+        }
     } catch (error) {
         console.error('Error generating DOCX:', error);
         alert('Error generating DOCX. Please try again.');
@@ -314,6 +376,37 @@ function downloadTXT() {
         saveAs(blob, fileName);
         console.log('TXT downloaded successfully');
         showNotification('TXT downloaded successfully!', 'success');
+        
+        // Save document to user profile
+        try {
+            if (firebase.auth().currentUser) {
+                // Check if saveDocumentToProfile exists in window scope
+                if (typeof window.saveDocumentToProfile === 'function') {
+                    window.saveDocumentToProfile({
+                        name: title,
+                        content: content,
+                        type: currentDocumentType
+                    });
+                    console.log('Document saved to profile');
+                } else {
+                    // If function doesn't exist, define it locally
+                    const user = firebase.auth().currentUser;
+                    const userDocs = JSON.parse(localStorage.getItem(`userDocs_${user.uid}`)) || [];
+                    const newDoc = {
+                        id: Date.now().toString(),
+                        name: title,
+                        content: content,
+                        createdAt: new Date().toISOString(),
+                        type: currentDocumentType
+                    };
+                    userDocs.push(newDoc);
+                    localStorage.setItem(`userDocs_${user.uid}`, JSON.stringify(userDocs));
+                    console.log('Document saved to profile using local implementation');
+                }
+            }
+        } catch (error) {
+            console.error('Error saving document to profile:', error);
+        }
     } catch (error) {
         console.error('Error generating TXT:', error);
         alert('Error generating TXT. Please try again.');
@@ -366,4 +459,4 @@ function showNotification(message, type = 'info') {
             document.body.removeChild(notification);
         }, 300);
     }, 3000);
-} 
+}

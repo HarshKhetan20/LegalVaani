@@ -206,7 +206,25 @@ function showNotification(message, type = 'info') {
     }, 3000);
 }
 
+function generateDocument(type) {
+    const formData = getFormData();
+    // ...existing generation code...
+
+    // Save document to user's profile
+    const docData = {
+        name: `${type.replace('-', ' ').toUpperCase()} - ${new Date().toLocaleDateString()}`,
+        content: generatedContent,
+        type: type
+    };
+    
+    if (firebase.auth().currentUser) {
+        saveDocumentToProfile(docData);
+    }
+    
+    // ...rest of generation code...
+}
+
 // Export for use in other files
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { documentTypes, selectDocument, showNotification };
-} 
+}
