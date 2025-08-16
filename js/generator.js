@@ -20,8 +20,8 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('Document data:', documentTypeData);
     
     if (!documentType || !documentTypeData) {
-        // Redirect to homepage if no document type selected
-        window.location.href = 'home.html';
+        // Redirect to index page if no document type selected
+        window.location.href = 'index.html';
         return;
     }
     

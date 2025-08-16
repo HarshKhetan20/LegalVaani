@@ -193,9 +193,9 @@ async function logout() {
         await auth.signOut();
         showNotification('Logged out successfully!', 'success');
         
-        // Redirect to home page if on a protected page
+        // Redirect to index page if on a protected page
         if (window.location.pathname.includes('generator.html')) {
-            window.location.href = 'home.html';
+            window.location.href = 'index.html';
         }
     } catch (error) {
         console.error('Logout error:', error);

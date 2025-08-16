@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
             loadUserDocuments();
         } else {
             // No user is signed in
-            window.location.href = 'home.html';
+            window.location.href = 'index.html';
         }
     });
 
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         firebase.auth().signOut()
             .then(() => {
                 localStorage.removeItem('user');
-                window.location.href = 'home.html';
+                window.location.href = 'index.html';
             })
             .catch((error) => {
                 alert('Error signing out: ' + error.message);
