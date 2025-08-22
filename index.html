@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Legalवाणी - Legal Document Generator</title>
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/ai-agent.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -120,8 +121,29 @@
                     </div>
                 </div>
             </section>
+
         </div>
     </main>
+
+    <!-- Improved AI Agent Button (floating bottom right) -->
+    <button id="ai-agent-btn" class="ai-agent-fab">
+        <i class="fas fa-robot"></i> 
+    </button>
+
+    <!-- Improved AI Agent Modal -->
+    <div id="ai-agent-modal" class="ai-agent-modal" style="display:none;">
+        <div class="ai-agent-modal-content">
+            <div class="ai-agent-modal-header">
+                <span class="ai-agent-title"><i class="fas fa-robot"></i> Legalवाणी AI Assistant</span>
+                <button id="ai-agent-close" class="ai-agent-close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="ai-chat-messages" class="ai-chat-messages"></div>
+            <div class="ai-agent-input-row">
+                <input type="text" id="ai-chat-input" class="ai-chat-input" placeholder="What can I do for you?" />
+                <button id="ai-chat-send" class="ai-chat-send-btn"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
 
     <footer class="footer">
         <div class="container">
@@ -202,6 +224,7 @@
     <script src="/js/firebase-config.js"></script>
     <script src="/js/fauth.js"></script>
     <script src="/js/main.js"></script>
+    <script src="/js/ai-agent.js"></script>
 </body>
 
 </html>
