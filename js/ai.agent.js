@@ -24,7 +24,7 @@ async function sendAIMessage() {
 
   try {
     const response = await fetch(
-      "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyDZi0LylhtwtuHpnVoj3qYhZMGF4fCw3x4",
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=YOUR_API_KEY",
       {
         method: "POST",
         headers: {
