@@ -137,6 +137,26 @@
         </div>
     </main>
 
+    <!-- Improved AI Agent Button (floating bottom right) -->
+    <button id="ai-agent-btn" class="ai-agent-fab">
+        <i class="fas fa-robot"></i> 
+    </button>
+
+    <!-- Improved AI Agent Modal -->
+    <div id="ai-agent-modal" class="ai-agent-modal" style="display:none;">
+        <div class="ai-agent-modal-content">
+            <div class="ai-agent-modal-header">
+                <span class="ai-agent-title"><i class="fas fa-robot"></i> Legalवाणी AI Assistant</span>
+                <button id="ai-agent-close" class="ai-agent-close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="ai-chat-messages" class="ai-chat-messages"></div>
+            <div class="ai-agent-input-row">
+                <input type="text" id="ai-chat-input" class="ai-chat-input" placeholder="What can I do for you?" />
+                <button id="ai-chat-send" class="ai-chat-send-btn"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
     <footer class="footer">
         <div class="container">
             <p>&copy; 2025 Legalवाणी. Professional Legal Document Generator for Advocates and Lawyers.</p>
@@ -222,5 +242,6 @@
     <script src="/js/templates.js"></script>
     <script src="/js/generator.js"></script>
     <script src="/js/editor.js"></script>
+    <script src="/js/ai-agent.js"></script>
 </body>
 </html> 
